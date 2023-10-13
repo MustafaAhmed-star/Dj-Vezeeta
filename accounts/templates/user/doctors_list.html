@@ -12,26 +12,35 @@
     <!-- job_listing_area_start  -->
     <div class="job_listing_area">
         <div class="container">
-
+            
             <div class="job_lists">
+               
+                
+                
                 <div class="row">
+                    {% for doctor in doctors  %}
                     <div class="col-lg-10 col-md-10" style="height: 16rem;" >
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
+                                {% if doctor.image  %}
                                 <div >
-                                    
-                                        <img  src="{% static 'img/candiateds/2.png' %}" alt="" width="100" height="100">
-                                        
+                            
+                                <img  src="{{doctor.image.url}}" alt="" width="100" height="100">
+                                         
                                 </div>
+                             
+                                {% endif %}
+                                    
+                             
                                 <div class="jobs_conetent">
-                                    <a href=""><h5>دكتور </h5></a>
+                                    <a href=""><h5>{{doctor.name}} </h5></a>
                                     <h6>subtitle</h6>
                                     
                                     <div class="links_locat">
                                         <div class="location">
                                             <p> <i class="fas fa-briefcase-medical"></i> دكتور <span style="color: blue;">doctor</span> متخصص في <span style="color: blue;">Specialist_doctor</span></p>
                                             <p> <i class="fa fa-map-marker"></i>address : address_detail</p>
-                                            <p> <i class="fa fa-map-marker"></i> الكشف : <span style="color: blue;">price</span> جنية</p>
+                                            <p> <i class="fa fa-map-marker"></i> الكشف : <span style="color: blue;">{{doctor.price}}</span> جنية</p>
                                             <p> <i class="fa fa-clock-o"></i> مدة الانتظار : <span style="color: blue;">Waiting_time</span> ساعه</p>
                                             <p> <i class="fa fa-clock-o"></i> عدد ساعات العمل : <span style="color: blue;">working_hours</span> ساعه</p>
                                             <p> <i class="fa fa-clock-o"></i>سعر المكالمه العادية  :<span style="color: blue;"> number_phone </span>  </p>
@@ -45,7 +54,7 @@
                                 <div class="apply_now">
                                     <a class="boxed-btn3" href="">حجز كشف</a>
                                 </div>
-
+                     
                                 <div class="rating">
                                     <div class="text-warning">
                                         <!-- to make image category for clinic image -->
@@ -64,10 +73,13 @@
                         </div>
                     </div>
 
-
+                    {% endfor %}
                 </div>
-            </div>
+           
+            </div> 
+          
         </div>
+    
     </div>
     <!-- job_listing_area_end  -->
 </div>
