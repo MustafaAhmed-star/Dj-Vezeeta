@@ -8,9 +8,15 @@ class Profile(models.Model):
     user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
     name =models.CharField(_('الاسم '),max_length=40)
     who_iam = models.TextField(_("من انا "),max_length=250)
-    price = models.IntegerField(_("سعر الكشف "),blank = True,default=1)
+    specialist = models.CharField(_("التخصص"), max_length=50)
+    subtitle = models.CharField(_("نبذة عنك"), max_length=150)
+    number_phone = models.CharField(_(" رقم الهاتف"), max_length=150)
+    address = models.CharField(_("العنوان بالتفصيل"), max_length=150)
+    price = models.IntegerField(_("سعر الكشف "),blank = True,default=1)       
+    working_hours = models.IntegerField(_("عدد ساعات العمل"),blank = True,default=1)
+    waiting_time = models.IntegerField(_("مدة الانتظار"),blank = True,default=1)
     image = models.ImageField(_("الصورة الشخصية"), upload_to= "profile",blank=True )
-    slug = models.SlugField(max_length=200 ,blank=True)
+    slug = models.SlugField(max_length=200 ,unique=True,blank=True,null=True)
     class Meta:
         # تحديد اسم الكلاس في admin panel 
         verbose_name = _("الملف الشخصي")
@@ -21,7 +27,7 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name,allow_unicode=True)
+            self.slug = slugify(self.user.username,allow_unicode=True)
         super(Profile, self).save(*args, **kwargs)
  
 
