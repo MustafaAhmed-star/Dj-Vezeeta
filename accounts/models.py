@@ -8,7 +8,7 @@ class Profile(models.Model):
     name =models.CharField(_('الاسم '),max_length=40)
     who_iam = models.TextField(_("من انا "),max_length=250)
     price = models.IntegerField(_("سعر الكشف "),blank = True,default=1)
-    image = models.ImageField(_("الصورة الشخصية"), upload_to= "profile",blank=True,default='static/profile.jpg' )
+    image = models.ImageField(_("الصورة الشخصية"), upload_to= "profile",blank=True )
 
     class Meta:
         # تحديد اسم الكلاس في admin panel 
