@@ -18,4 +18,3 @@ def doctor_detail(request,slug):
     return render(request,'user/doctor_details.html',context=context)
 
 
-    

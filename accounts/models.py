@@ -4,6 +4,13 @@ from django.utils.translation import gettext_lazy  as _
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.text import slugify
+
+
+
+GENDER= (
+    ('male', 'ذكر'),
+    ('female', 'انثى'),
+)
 class Profile(models.Model):
     user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
     name =models.CharField(_('الاسم '),max_length=40)
@@ -19,7 +26,9 @@ class Profile(models.Model):
     twitter  = models.CharField(max_length = 150,blank = True)
     waiting_time = models.IntegerField(_("مدة الانتظار"),blank = True,default=1)
     image = models.ImageField(_("الصورة الشخصية"), upload_to= "profile",blank=True )
+    gender = models.CharField(_("الجنس"), max_length=10,choices=GENDER,default='male')
     slug = models.SlugField(max_length=200 ,unique=True,blank=True,null=True)
+    created_at = models.DateTimeField(_("وقت الانضمام"),auto_now_add=True)
     class Meta:
         # تحديد اسم الكلاس في admin panel 
         verbose_name = _("الملف الشخصي")
