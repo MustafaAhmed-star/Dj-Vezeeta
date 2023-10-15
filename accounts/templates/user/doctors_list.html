@@ -38,7 +38,7 @@
                                     
                              
                                 <div class="jobs_conetent">
-                                    <a href=""><h5>{{doctor.name}} </h5></a>
+                                    <a href="{% url 'accounts:doctor-detail' doctor.slug %}" ><h5>{{doctor.name}}</h5></a> 
                                     <h6 style="color: green;">{{doctor.subtitle}}</h6>
                                     
                                     <div class="links_locat">
