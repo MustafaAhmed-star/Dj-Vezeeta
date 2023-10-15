@@ -8,3 +8,14 @@ def doctors_list(request):
         'doctors':doctors
     }
     return render(request,'user/doctors_list.html',context=context)
+
+
+def doctor_detail(request,slug):
+    doctor_detail = Profile.objects.get(slug=slug)
+    context ={
+        'doctor_detail':doctor_detail
+    }
+    return render(request,'user/doctor_details.html',context=context)
+
+
+    
