@@ -11,11 +11,25 @@ GENDER= (
     ('male', 'ذكر'),
     ('female', 'انثى'),
 )
+specialist = (
+    ('جلدية', 'جلدية'),
+    ('اسنان', 'اسنان'),
+    ('اطفال حديثي الولاد', 'اطفال حديثي الولاد'),
+    ('مخ واعصاب', 'مخ واعصاب'),
+    ('عظام', 'عظام'),
+    ('نساء', 'نساء'),
+    ('انف واذن وحنجرة', 'انف واذن وحنجرة'),
+    ('قلب واوعية دموية', 'قلب واوعية دموية'),
+    ('امراض دم', 'امراض دم'),
+    ('جراحه', 'جراحه'),
+    ('تجميل', 'تجميل'),
+    
+)
 class Profile(models.Model):
     user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
     name =models.CharField(_('الاسم '),max_length=40)
     who_iam = models.TextField(_("من انا "),max_length=250)
-    specialist = models.CharField(_("التخصص"), max_length=50)
+    specialist = models.CharField(_("التخصص"),choices=specialist ,max_length=50,default='جلدية')
     subtitle = models.CharField(_("نبذة عنك"), max_length=150)
     number_phone = models.CharField(_(" رقم الهاتف"), max_length=150)
     address = models.CharField(_("العنوان بالتفصيل"), max_length=150)
