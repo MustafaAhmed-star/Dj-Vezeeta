@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from .models import Profile
 from .forms import LoginForm
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import login,authenticate
 # Create your views here.
 def doctors_list(request):
     doctors = Profile.objects.all()
@@ -23,13 +23,12 @@ def doctor_detail(request,slug):
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('accounts:doctors-list')
+        username= request.POST['username']
+        password= request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('accounts:doctors-list')
     else:
         form = LoginForm()
     return render(request,'user/login.html',{'form':form})
