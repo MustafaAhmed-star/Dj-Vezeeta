@@ -53,9 +53,12 @@
                         <div class="main-menu  d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="">احجز دكتورك</a></li>|
+                                    <li><a href="{% url "accounts:doctors-list" %}">احجز دكتورك</a></li>|
                                     <li><a href="">المقالات</a></li>|
-                                    <li><a href="">الصفحه الشخصيه </a></li>|
+                                    {% if request.user.is_authenticated %}   
+                                      <li><a href="{% url "accounts:myprofile" %}">{{request.user}}</a></li>|
+                                    {% endif %}
+                               
                                     <li><a href="contact.html">اتصل بنا</a></li>
                                 </ul>
                             </nav>
@@ -65,18 +68,22 @@
                         <div class="Appointment">
                             
                             <div class="phone_num d-none d-xl-block"></div>
+                            
+                            {% if request.user.is_authenticated%}
                             <div class="d-none d-lg-block">
                                 <a class="boxed-btn3" href="">قدم نفسك</a>
                             </div>
-                            
+                            {% else %}
+                        
                             <div class="phone_num d-none d-xl-block">
-                                <a class="boxed-btn3" href="">سجل الدخول</a>
+                                <a class="boxed-btn3" href="{% url "accounts:login" %}">سجل الدخول</a>
                             </div>
                             <div class="d-none d-lg-block">
                                 <a class="boxed-btn3" style="background-color: crimson;" href="">التسجيل</a>
                             </div>
                             
                         </div>
+                        {% endif %}
                     </div>
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>

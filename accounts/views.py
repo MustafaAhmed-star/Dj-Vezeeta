@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from .models import Profile
 from .forms import LoginForm
 from django.contrib.auth import login,authenticate
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def doctors_list(request):
     doctors = Profile.objects.all()
@@ -35,7 +37,8 @@ def user_login(request):
  
 
 
-
+#@login_required(login_url="accounts:login")#  I can do it without (login_url="accounts:login") i can define LOGIN_URL in Settings
+@login_required()
 def myprofile(request):
     profile = Profile.objects.get(user=request.user)
     return render(request,'user/myprofile.html',{'profile':profile})  
