@@ -32,3 +32,10 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request,'user/login.html',{'form':form})
+ 
+
+
+
+def myprofile(request):
+    profile = Profile.objects.get(user=request.user)
+    return render(request,'user/myprofile.html',{'profile':profile})  
