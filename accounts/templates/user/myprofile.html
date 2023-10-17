@@ -21,8 +21,15 @@
                     <div class="single_jobs white-bg d-flex justify-content-between">
                         <div class="jobs_left d-flex align-items-center">
                             <div >
+                                {% if profile.image %}
+                                <img src="{{ profile.image.url }}" alt="" width="100" height="100">
+
+                                {% else %}
+                                <img src="{% static 'img/profile.jpg' %}" alt="" width="100" height="100">
+
+                                {% endif %}
                                 
-                                <img src="img/candiateds/2.png" alt="" width="100" height="100">
+                                
                                     
                             </div>
                             <div class="jobs_conetent">
@@ -47,13 +54,13 @@
                 
                 <div class="descript_wrap white-bg">
                     <div class="single_wrapp">
-                        <h3>subtitle</h3>
+                        <h3>{{profile.subtitle}}</h3>
                     </div>
                     <div class="white-card white-card-inner">
                         <div class="single_wrap" style="margin-top: 10px;">
                             <h4>معلومات عن الدكتور</h4>
                             <ul>
-                                <p>وصف الدكتور</p>
+                                <p> {{profile.who_iam}} </p>
                             </ul>
                         </div>
                     </div>
@@ -88,17 +95,17 @@
                     </div>
                     <div class="job_content">
                         <ul>
-                            <li>  أنشاء فى : </li>
-                            <li> الكشف :  جنية</li>
-                            <li> بلد المنشأ : </li>
-                            <li>عدد ساعات العمل : </li>
+                            <li>  أنشاء فى :<span style="color: blue;">{{profile.created_at|date:" d m Y"}}</span> </li>
+                            <li> الكشف :<span style="color: blue;">{{profile.price }}</span> جنية</li>
+                            <li> بلد المنشأ :  <span style = "color:green;">مصر</span></li>
+                            <li>عدد ساعات العمل :<span style="color: blue;">{{profile.working_hours}} </span>ساعات</li>
                         </ul>
                     </div>
                 </div>
                 <div class="share_wrap d-flex">
                     <span>شارك الصفحه :</span>
                     <ul>
-                        <li><a href="#"> <i class="fa fa-facebook"></i></a> </li>
+                        <li><a href="{{profile.facebook}}"> <i class="fa fa-facebook"></i></a> </li>
                         <li><a href="#"> <i class="fa fa-google-plus"></i></a> </li>
                         <li><a href="#"> <i class="fa fa-twitter"></i></a> </li>
                         <li><a href="#"> <i class="fa fa-envelope"></i></a> </li>
