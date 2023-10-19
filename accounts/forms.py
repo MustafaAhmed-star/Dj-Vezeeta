@@ -13,7 +13,7 @@ class LoginForm(forms.ModelForm):
 class UserUpdateForm(forms.ModelForm):
     first_name = forms.CharField(label='الاسم الاول')
     last_name = forms.CharField(label='الاسم الثاني')
-    email = forms.EmailField(label='البريد الالكتروني')
+    email = forms.CharField(label='البريد الالكتروني')
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', ]
