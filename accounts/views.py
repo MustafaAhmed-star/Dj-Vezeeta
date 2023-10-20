@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from .models import Profile
-from .forms import LoginForm ,UserUpdateForm , UserCreateForm
+from .forms import LoginForm ,UserUpdateForm , UserCreateForm ,ProfileUpdateForm
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.decorators import login_required
 
@@ -70,3 +70,19 @@ def signup(request):
         form = UserCreateForm()
     
     return render(request,'user/signup.html',{'form':form})
+
+def update_profile(request):
+    user_form = UserUpdateForm(instance=request.user)
+    profile_form = ProfileUpdateForm(instance=request.user.profile)
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST,request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('accounts:myprofile')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm( instance=request.user.profile)
+
+    return render(request,'user/update_profile.html',{'profile_form':profile_form ,'user_form':user_form})
