@@ -43,6 +43,7 @@ class Profile(models.Model):
     gender = models.CharField(_("الجنس"), max_length=10,choices=GENDER,default='male')
     slug = models.SlugField(max_length=200 ,unique=True,blank=True,null=True)
     created_at = models.DateTimeField(_("وقت الانضمام"),auto_now_add=True)
+    is_doctor = models.BooleanField(default=True)
     class Meta:
         # تحديد اسم الكلاس في admin panel 
         verbose_name = _("الملف الشخصي")
@@ -55,10 +56,24 @@ class Profile(models.Model):
         if not self.slug:
             self.slug = slugify(self.user.username,allow_unicode=True)
         super(Profile, self).save(*args, **kwargs)
- 
 
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, created, **kwargs):
     if created:
         profile = Profile.objects.create(user=instance, name=instance.username)
          
+
+# class ProfilePatient(models.Model):
+#     user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
+#     name =models.CharField(_('الاسم '),max_length=40)
+#     gender = models.CharField(_("الجنس"), max_length=10,choices=GENDER,default='male')
+
+
+#     class Meta:
+#         # تحديد اسم الكلاس في admin panel 
+#         verbose_name = _("الملف الشخصي")
+#         verbose_name_plural = _(" المرضى  ")
+
+#     def __str__(self):
+#         return self.name
+     
