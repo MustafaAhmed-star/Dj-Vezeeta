@@ -12,101 +12,10 @@
             <h4 class="auth-header">تحديث معلوماتك الشخصية</h4>
             {% csrf_token %}
                 <div class="form-group">
-                    {{ user_form.email|as_crispy_field  }}
+                    {{ profile_form.name|as_crispy_field  }}
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ user_form.first_name|as_crispy_field}}
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ user_form.last_name|as_crispy_field}}
-                    </div>
-                </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.name|as_crispy_field}}
-                        </div>
-                    </div>
-                 
-                </div>
-                <div class="form-group">
-                    {{ profile_form.who_iam|as_crispy_field}}
-                </div>
-                <div class="form-group">
-                    {{ profile_form.subtitle|as_crispy_field}}
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.address|as_crispy_field}}
-                        </div>
-                    </div>
-                  
-                </div>
-                
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.price|as_crispy_field}}
-                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.number_phone|as_crispy_field}}
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.working_hours|as_crispy_field}}
-                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.waiting_time|as_crispy_field}}
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.specialist|as_crispy_field}}
-                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.facebook|as_crispy_field}}
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.twitter|as_crispy_field}}
-                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ profile_form.google|as_crispy_field}}
-                        </div>
-                    </div>
-                
-                </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        {{ profile_form.image|as_crispy_field}}
-                    </div>
-                </div>
-            </div>
+             
+          
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
