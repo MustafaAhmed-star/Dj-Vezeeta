@@ -62,3 +62,17 @@ def save_profile(sender, instance, created, **kwargs):
     if created:
         profile = Profile.objects.create(user=instance, name=instance.username)
          
+
+class ProfilePatient(models.Model):
+    user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
+    name =models.CharField(_('الاسم '),max_length=40)
+    gender = models.CharField(_("الجنس"), max_length=10,choices=GENDER,default='male')
+
+
+    class Meta:
+        # تحديد اسم الكلاس في admin panel 
+        verbose_name = _("الملف الشخصي")
+        verbose_name_plural = _(" المرضى  ")
+
+    def __str__(self):
+        return self.name

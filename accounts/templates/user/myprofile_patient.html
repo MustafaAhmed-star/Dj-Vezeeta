@@ -1,0 +1,156 @@
+
+
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="catagory_area ">
+    <div class="container " style="margin-top: 10rem">
+            
+                </div>
+                </form> 
+            </div>
+        </div>
+{% if request.user %}
+
+
+<div class="job_details_area">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="job_details_header">
+                    <div class="single_jobs white-bg d-flex justify-content-between">
+                        <div class="jobs_left d-flex align-items-center">
+                            <div >
+                                {% if profile.image %}
+                                <img src="{{ profile.image.url }}" alt="" width="100" height="100">
+
+                                {% else %}
+                                <img src="{% static 'img/profile.jpg' %}" alt="" width="100" height="100">
+
+                                {% endif %}
+                                
+                                
+                                    
+                            </div>
+                            <div class="jobs_conetent">
+                                <a href="#" ><h4>{{profile.name}}</h4></a>
+                                <div class="links_locat d-flex align-items-center">
+                                    <div class="location">
+                                        <p> <i class="fa fa-map-marker"></i> {{profile.address}} </p>
+                                    </div>
+                                    <div class="location">
+                                        <p> <i class="fa fa-clock-o"></i> {{profile.waiting_time}} وقت الانتظار  دقيقه</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs_right">
+                            <div class="apply_now">
+                                <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="descript_wrap white-bg">
+                    <div class="single_wrapp">
+                        <h3>{{profile.subtitle}}</h3>
+                    </div>
+                    <div class="white-card white-card-inner">
+                        <div class="single_wrap" style="margin-top: 10px;">
+                            <h4>معلومات عن الدكتور</h4>
+                            <ul>
+                                <p> {{profile.who_iam}} </p>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="single_wrap">
+                        <h4>خدمات الدكتور :</h4>
+                        <ul>
+                            <p class="tagitem disable-click pull-left mr-4" style="background-color: #f5f5f5;
+                            color: #808184;"> استشاري جراحه وتجميل الاسنان 
+                            </p>
+                            <p class="tagitem disable-click pull-left" style="background-color: #f5f5f5;
+                            color: #808184;">استشاري جراحه وتجميل الاسنان 
+                            </p>
+                        </ul>
+                        <br>
+                    </div>
+                    <div class="single_wrap">
+                        <h4>صور العيادة :</h4>
+                        <img src="img/candiateds/2.png" alt="">
+                        <img src="img/candiateds/2.png" alt="">
+                        <img src="img/candiateds/2.png" alt="">
+                        <img src="img/candiateds/2.png" alt="">
+    
+                    </div>
+                </div>
+                
+    
+            </div>
+            <div class="col-lg-4">
+                <div class="job_sumary">
+                    <div class="summery_header">
+                        <h3>معلومات عن الدكتور </h3>
+                    </div>
+                    <div class="job_content">
+                        <ul>
+                            <li>  أنشاء فى :<span style="color: blue;">{{profile.created_at|date:" d m Y"}}</span> </li>
+                            <li> الكشف :<span style="color: blue;">{{profile.price }}</span> جنية</li>
+                            <li> بلد المنشأ :  <span style = "color:green;">مصر</span></li>
+                            <li>عدد ساعات العمل :<span style="color: blue;">{{profile.working_hours}} </span>ساعات</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="share_wrap d-flex">
+                    <span>شارك الصفحه :</span>
+                    <ul>
+                        <li><a href="{{profile.facebook}}"> <i class="fa fa-facebook"></i></a> </li>
+                        <li><a href="#"> <i class="fa fa-google-plus"></i></a> </li>
+                        <li><a href="#"> <i class="fa fa-twitter"></i></a> </li>
+                        <li><a href="#"> <i class="fa fa-envelope"></i></a> </li>
+                    </ul>
+                </div>
+                <div class="job_location_wrap">
+                    <div class="job_lok_inner">
+                        <div id="map" style="height: 200px;"></div>
+                        <script>
+                            function initMap() {
+                            var uluru = {lat: -25.363, lng: 131.044};
+                            var grayStyles = [
+                                {
+                                featureType: "all",
+                                stylers: [
+                                    { saturation: -90 },
+                                    { lightness: 50 }
+                                ]
+                                },
+                                {elementType: 'labels.text.fill', stylers: [{color: '#ccdee9'}]}
+                            ];
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                center: {lat: -31.197, lng: 150.744},
+                                zoom: 9,
+                                styles: grayStyles,
+                                scrollwheel:  false
+                            });
+                            }
+                            
+                 
+                        
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% else %}
+<h1 color = "red">You dont have access on that</h1>
+{% endif %}
+
+{% endblock body %}
