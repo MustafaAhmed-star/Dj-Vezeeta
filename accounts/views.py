@@ -5,15 +5,7 @@ from .models import Profile , ProfilePatient
 from .forms import LoginForm ,UserUpdateForm , UserCreateForm ,ProfileUpdateForm ,PatientUpdateForm
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.decorators import login_required
-#########################
-def doctor_notrequired(function):
-    def wrap(request, *args, **kwargs):
-        if  request.user.profile.is_doctor == False:  # Adjust this condition based on your profile model
-            return function(request, *args, **kwargs)
-        else:
-            return HttpResponseForbidden("You do not have permission to access this page.")
-    return wrap
-
+ 
 # Create your views here.
 def doctors_list(request):
     doctors = Profile.objects.all()  
@@ -96,18 +88,5 @@ def update_profile(request):
         profile_form = ProfileUpdateForm( instance=request.user.profile)
 
     return render(request,'user/update_profile.html',{'profile_form':profile_form ,'user_form':user_form})
-@login_required()
-@doctor_notrequired
-def update_patient(request):
-    
-    profile_form = PatientUpdateForm(instance=request.user.profile)
-    if request.method == 'POST':
-        profile_form = PatientUpdateForm(request.POST,request.FILES, instance=request.user.profile)
-        if profile_form.is_valid() :
-    
-            profile_form.save()
-            return redirect('accounts:doctors-list')
-    else:
-        profile_form = PatientUpdateForm( instance=request.user.profile)
-
-    return render(request,'user/patient_profile.html',{'profile_form':profile_form  })
+ 
+ 

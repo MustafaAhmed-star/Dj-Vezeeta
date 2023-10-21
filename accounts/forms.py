@@ -41,7 +41,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 
-class PatientUpdateForm(forms.ModelForm):
-    class Meta:
-        model = ProfilePatient
-        fields = '__all__'
+# class PatientUpdateForm(forms.ModelForm):
+#     class Meta:
+#         model = ProfilePatient
+#         fields = '__all__'
