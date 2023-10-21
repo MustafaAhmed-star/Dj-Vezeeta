@@ -44,13 +44,7 @@ def myprofile(request):
     profile = Profile.objects.get(user=request.user)
     
     return render(request,'user/myprofile.html',{'profile':profile})  
-@login_required()
-def patient_profile(request):
-    
-    profile = Profile_Patiente.objects.get(user=request.user)
-    
-    return render(request,'user/myprofile.html',{'profile':profile})  
-
+ 
 
 @login_required()
 def user_update(request):
@@ -93,3 +87,18 @@ def update_profile(request):
         profile_form = ProfileUpdateForm( instance=request.user.profile)
 
     return render(request,'user/update_profile.html',{'profile_form':profile_form ,'user_form':user_form})
+# def update_profile(request):
+#     user_form = UserUpdateForm(instance=request.user)
+#     profile_form = ProfileUpdateForm(instance=request.user.profile)
+#     if request.method == 'POST':
+#         user_form = UserUpdateForm(request.POST, instance=request.user)
+#         profile_form = ProfileUpdateForm(request.POST,request.FILES, instance=request.user.profile)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user_form.save()
+#             profile_form.save()
+#             return redirect('accounts:myprofile')
+#     else:
+#         user_form = UserUpdateForm(instance=request.user)
+#         profile_form = ProfileUpdateForm( instance=request.user.profile)
+
+#     return render(request,'user/update_profile.html',{'profile_form':profile_form ,'user_form':user_form})

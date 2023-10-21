@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile, ProfilePatient
 
 
 
@@ -37,3 +37,11 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'who_iam','specialist','subtitle','number_phone','address','price','working_hours','facebook','google','twitter','waiting_time','image','gender']
+
+
+
+
+class PatientUpdateForm(forms.ModelForm):
+    class Meta:
+        model = ProfilePatient
+        fields = '__all__'
